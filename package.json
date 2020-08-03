@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeivaskin1991/backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergeivaskin1991/backend/issues"
+  },
+  "homepage": "https://github.com/sergeivaskin1991/backend#readme",
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0"
+  }
+}
