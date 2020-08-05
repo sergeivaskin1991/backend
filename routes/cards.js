@@ -1,9 +1,20 @@
 const path = require('path');
+// eslint-disable-next-line no-unused-vars
+const router = require('express').Router();
+// eslint-disable-next-line no-unused-vars
+const fs = require('fs').promises;
 
-const cardsRouter = (req, res) => {
-  // eslint-disable-next-line global-require,import/no-dynamic-require
-  const cards = require(path.join(__dirname, '../data/cards.json'));
-  res.send(cards);
-};
+// eslint-disable-next-line no-unused-vars
+const cards = path.join(__dirname, '../data/cards.json');
 
-module.exports = { cardsRouter };
+router.get('/', (req, res) => {
+  fs.readFile(cards, { encoding: 'utf8' })
+    .then((data) => {
+      res.send(JSON.parse(data));
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+});
+
+module.exports = router;

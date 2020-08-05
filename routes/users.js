@@ -1,37 +1,39 @@
 const path = require('path');
 const router = require('express').Router();
-
-// eslint-disable-next-line import/no-dynamic-require
-const users = require(path.join(__dirname, '../data/users.json'));
 const fs = require('fs').promises;
 
+// eslint-disable-next-line import/no-dynamic-require
+const users = path.join(__dirname, '../data/users.json');
+
 const usersRouter = (req, res) => {
-  res.send(users);
+  fs.readFile(users, { encoding: 'utf8' })
+    .then((data) => {
+      res.send(JSON.parse(data));
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
 };
 
 const userRouter = (req, res) => {
-  const { id } = req.params;
-  const result = users.find(({ _id }) => _id === id);
+  fs.readFile(users, { encoding: 'utf8' })
+    .then((data) => {
+      const searchUser = JSON.parse(data)
+        .find((user) => user._id === req.params.id);
 
-  if (!result) {
-    res.status(404).send({ message: 'Нет пользователя с таким id' });
-    return;
-  }
+      if (searchUser) {
+        res.send(searchUser);
+        return;
+      }
 
-  res.send(result);
-};
-
-router.get('/', (req, res) => {
-  fs.readFile(users, 'utf8')
-    .then((routes) => {
-      res.send(routes);
+      res.status(404).send({ message: 'Нет пользователя с таким id' });
     })
-    .catch(() => {
-      res.status('500').send({ ERROR: 'Данные не найдены' });
+    .catch((err) => {
+      res.status(500).send(err.message);
     });
-});
-
-module.exports = {
-  usersRouter,
-  userRouter,
 };
+
+router.get('/', usersRouter);
+router.get('/:id', userRouter);
+
+module.exports = router;
