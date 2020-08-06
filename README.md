@@ -5,7 +5,7 @@
 
 
 ### Функциональность
-+ `localhost:3000` загружает фронтенд проекта [Mesto]();
++ `localhost:3000` загружает фронтенд проекта [Mesto](https://github.com/sergeivaskin1991/my_project_11_mesto);
 + GET-запрос `localhost:3000/cards` возвращает JSON-объект со списком карточек
 + GET-запрос `localhost:3000/users` возвращает JSON-объект со списком пользователей
 + GET-запрос `localhost:3000/users/8340d0ec33270a25f2413b69` возвращает JSON-объект пользователя
@@ -19,7 +19,7 @@
 
 ### Развёртывание проекта
 1. Установить `Node.js`
-2. Клонировать репозиторий ``
+2. Клонировать репозиторий `https://github.com/sergeivaskin1991/backend`
 3. Установить зависимости `npm i`
 4. `npm run start` запускает сервер на `localhost:3000`
 5. `npm run dev` запускает сервер на `localhost:3000` с хот релоудом
